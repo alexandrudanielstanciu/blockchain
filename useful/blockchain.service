@@ -1,0 +1,11 @@
+[Unit]
+Description=Gunicorn instance for a simple blockchain app
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/work/blockchain
+ExecStart=/home/ubuntu/work/blockchain/bin/gunicorn --workers 3 --bind unix:blockchain.sock -m 007 main:app
+Restart=always
+[Install]
+WantedBy=multi-user.target
